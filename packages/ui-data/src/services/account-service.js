@@ -88,3 +88,18 @@ export function getAccountProducts(dispatch, params) {
         dispatch(setData(response))
     })
 }
+
+export function createQRcode(dispatch, params) {
+    createRequest(
+        dispatch,
+        `/cheques/QRCheque/`,
+        'POST',
+        params,
+      {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json'},
+        function (response) {
+            dispatch(setData(response))
+        }
+    )
+}

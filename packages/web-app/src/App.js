@@ -7,6 +7,7 @@ import Loading from '@openbanking/ui-common/lib/Loading'
 import Error from '@openbanking/ui-common/lib/Error'
 import NotFound from '@openbanking/ui-common/lib/NotFound'
 import Accounts from './Accounts'
+import Cheques from './Cheques'
 import Dashboard from './Dashboard'
 import Loader from './Loader'
 import Redirecting from './Redirecting'
@@ -36,6 +37,7 @@ const App = () => {
                                 path="/redirecting"
                                 render={() => <Redirecting />}
                             />
+
                             <PrivateRoute
                                 exact
                                 path="/aisp"
@@ -45,6 +47,11 @@ const App = () => {
                                 exact
                                 path="/pisp"
                                 render={() => <Payments />}
+                            />
+                             <PrivateRoute
+                                exact
+                                path="/cheques"
+                                render={() => <Cheques />}
                             />
                             <Route path="*" component={NotFound} />
                         </Switch>

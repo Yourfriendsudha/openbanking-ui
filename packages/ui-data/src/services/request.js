@@ -33,3 +33,33 @@ export default function createRequest(
             dispatch(setError(error))
         })
 }
+
+export default function postRequest(
+    dispatch,
+    endpoint,
+    method = 'POST',
+    data = {},
+    headers = {},
+    callbackFn
+) {
+    dispatch(setLoader(true))
+    axios({
+        url: base_url + endpoint,
+        method,
+        data: data,
+        headers,
+    })
+        .then(function (response) {
+            // dont stop loader in case of redirection
+            if(!endpoint.includes('init')){
+                dispatch(setLoader(false))
+            }
+            callbackFn(response.data)
+        })
+        .catch(function (error) {
+            dispatch(setLoader(false))
+            dispatch(setError(error))
+        })
+}
+
+

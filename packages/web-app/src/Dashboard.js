@@ -41,9 +41,15 @@ const Dashboard = () => {
                             </button>
                             <button
                                 className="journeyBtn"
-                                // to do 
+                                onClick={() => setType('pisp')}
                             >
                                 Payment Initiation Service Provider (PISP)
+                            </button>
+                            <button
+                                className="journeyBtn"
+                                onClick={() => setType('cheques')}
+                            >
+                                Virtual cheques
                             </button>
                         </div>
                     </div>
