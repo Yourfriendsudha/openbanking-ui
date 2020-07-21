@@ -39,6 +39,8 @@ class Cheques extends Component  {
 this.setState({[e.target.name]:e.target.value})
   }
 
+  
+
   handleSubmit=(e)=> {
     e.preventDefault();
    
@@ -58,7 +60,7 @@ this.setState({[e.target.name]:e.target.value})
             beneSortCode:'',
             chequeAmount:''
           }
-          this.setState(obj)
+          this.setState({ resp: response.data.picByte })
           
         }else if(response.status === 'fail'){
           console.log('fail')
@@ -92,10 +94,13 @@ this.setState({[e.target.name]:e.target.value})
         
         <button type="submit">Submit!</button>
     	</form>
-          <div id="qrCheques">
+      <div  className="container">
+          <img src={`this.state.resp:image/jpeg;,${this.state.resp}`} />
+          {this.state.resp}
+          </div>
+ 
           </div>
           
-          </div>
 
           
       );
