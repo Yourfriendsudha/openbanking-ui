@@ -12,7 +12,25 @@ export function getAccountList(dispatch) {
         if(response.Data.Account.length>0){
             dispatch(setAccountId(response.Data.Account[0].AccountId))
         }
+        console.log('response',response)
     })
+    
+}
+
+export function getBal(dispatch) {
+    createRequest(dispatch, '/aisp/accounts', 'GET', null, {}, function (
+        response
+    ) {
+        //callback placeholder where one or multiple actions can be dispatched
+        dispatch(setData(response))
+        if(response.Data.Account.length>0){
+            dispatch(setAccountId(response.Data.Account[0].AccountId))
+        }
+        getAccountById(dispatch, response.Data.Account[0].AccountId)
+        getAccountBalances(dispatch, response.Data.Account[0].AccountId) 
+        console.log('response',response)
+    })
+    
 }
 
 // get account by id
