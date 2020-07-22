@@ -31,14 +31,13 @@ const Balance = () => {
         //     getAccountBalances(dispatch, accountId)
         //   }, [accountId])
 
-
-    //const data1 = useSelector((state) => state.app.data)   
-    console.log("suda===",data)      
+    
 
     return (
         
                 <div className="container">
-                    <InfoDisplay data={data} />
+                    <h2>Balance</h2>
+                    <InfoDisplay data={data && data.Data && data.Data.Balance && data.Data.Balance[0].Amount} />
                 </div>
            
     )
