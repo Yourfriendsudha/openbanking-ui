@@ -35,6 +35,7 @@ class Cheques extends Component  {
       beneSortCode:'',
       chequeAmount:'',
       shareImage:'',
+      shareImageResp:'',
 
       resp:''
      
@@ -61,24 +62,12 @@ this.setState({[e.target.name]:e.target.value})
     })
   }
 
-  //  config = {
-  //   headers: {
-  //     'Accept': 'application/json',
-  //   'Content-Type': 'application/json'},
-  //   params: {
-  //     qrImage:this.state.shareImage,
-  //     bene:this.state.beneName,
-  //     user:this.state.payeeName
-  //   }
-  // }
 
   handleShare=(e)=> {
     e.preventDefault();
     axios.get("http://localhost:8080/open-banking/v3/cheques/shareQR",
     {
       headers: {
-      //   'Accept': 'application/json',
-      // 'Content-Type': 'image/png'
        'Accept': 'application/json',
     'Content-Type': 'application/json'
     },
@@ -89,7 +78,7 @@ this.setState({[e.target.name]:e.target.value})
       }
     }).then((response)=>{
       if (response){
-        console.log('response')
+        this.setState({ shareImageResp:"Shared successfully"})
       }else if(response.status === 'fail'){
         console.log('fail')
       }
@@ -98,7 +87,7 @@ this.setState({[e.target.name]:e.target.value})
 
 
   render() {
-    const {payeeName,payeeAcNum,payeeSortCode,beneName,brand,beneAcNum,acPayonly,beneSortCode,chequeAmount,shareImage} = this.state
+    const {payeeName,payeeAcNum,payeeSortCode,beneName,brand,beneAcNum,acPayonly,beneSortCode,chequeAmount,shareImage, shareImageResp} = this.state
       return (
         <div >
              
@@ -126,8 +115,10 @@ this.setState({[e.target.name]:e.target.value})
       </div>
 
       <div className="container">
+      <div className="containerm">
       <div className="container-header">
         <h3>Share the cheque With Beneficiary</h3>
+       <span className="containern"> <h4>{this.state.shareImageResp}</h4> </span>
         
       </div>
           
@@ -139,9 +130,13 @@ this.setState({[e.target.name]:e.target.value})
            
         <button type="submit">Share!</button>
     	</form>
-      
+      </div>
       </div>
       <div  className="container">
+      <div className="container-header">
+        <h3>Cheque Details</h3>
+        
+      </div>
           <img src={`this.state.resp:image/jpeg;,${this.state.resp}`} />
          <span >{this.state.resp}</span> 
           </div>
